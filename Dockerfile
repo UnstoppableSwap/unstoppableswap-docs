@@ -1,14 +1,11 @@
-# Copied from https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
-
-FROM node:18-alpine AS base
+# Use the official Node.js 18 slim image as a base
+FROM node:18-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
+# Copy the lockfiles and package.json to install dependencies
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -17,10 +14,11 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+# Copy the installed node_modules and the rest of the app's source code
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -44,9 +42,11 @@ ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Add a system group and user for running the app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Copy the public folder and the built .next folder
 COPY --from=builder /app/public ./public
 
 # Set the correct permission for prerender cache
@@ -58,11 +58,13 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Switch to the new user
 USER nextjs
 
-EXPOSE $PORT
+# Expose the port that the app runs on
+EXPOSE 3000
 
-# Set hostname
+# Set the hostname
 ENV HOSTNAME "0.0.0.0"
 
 # server.js is created by next build from the standalone output
