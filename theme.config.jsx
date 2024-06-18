@@ -1,7 +1,7 @@
 export default {
-  logo: <span>My Nextra Documentation</span>,
+  logo: <span>UnstoppableSwap</span>,
   project: {
-    link: 'https://github.com/shuding/nextra'
+    link: 'https://github.com/UnstoppableSwap/unstoppableswap-docs',
   }
   // ... other theme options
 }
