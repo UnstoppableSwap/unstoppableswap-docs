@@ -40,3 +40,24 @@ If you're happy with the offer, you can proceed by sending the Bitcoin to the ad
 All funds sent to this address will be used for the swap as long as they below the maximum amount.
 
 <img src="/first_swap_3.png"/>
+
+## Step 4: Waiting for the swap to complete
+
+After sending the Bitcoin, you'll need to wait a moment for the Bitcoin to be locked.
+After the lock transaction has been confirmed, the other party will lock the Monero funds.
+In most cases, it will take around 10 minutes for the Bitcoin lock transaction to be confirmed and 2 minutes later the Monero lock transaction will be confirmed.
+
+<img src="/first_swap_4.png"/>
+
+The swap will go through four stages:
+1. **Locking the Bitcoin**: Your Bitcoin is locked in a 2-of-2 multisig address.
+2. **_Swap Provider_ locks the Monero**: The other party lock the Monero
+3. **_Swap Provider_ redeems _Bitcoin_**: The other party redeems the Bitcoin
+4. **Redeeming the Monero**: You redeem the Monero using a key that was revealed in step 3
+<table>
+    <tr>
+        <td><img src="/first_swap_5.png"/></td>
+        <td><img src="/first_swap_6.png"/></td>
+        <td><img src="/first_swap_7.png"/></td>
+    </tr>
+</table>
