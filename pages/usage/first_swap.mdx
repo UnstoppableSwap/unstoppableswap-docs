@@ -11,7 +11,10 @@ To complete an Atomic Swap, you'll need to have the following:
 2. A Bitcoin wallet you can use with some funds in it. This wallet should also be able to generate a native SegWit address (an address starting with `bc1`). This address will be used to receive the refunded BTC if the swap is not completed.
 3. The UnstoppableSwap GUI installed on your computer. We'll refer to this as GUI from now on. View the [Installation Instructions](../getting_started/install_instructions) if you haven't already installed the GUI.
 
-## 1. Choose a _Swap Provider_ to swap with
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+### Choose a _Swap Provider_ to swap with
 
 After opening the GUI, you'll be greeted with the main screen. In the bottom of the widget in the middle of the screen you can see the currently selected _Swap Provider_. This is who you'll sent your Bitcoin to and who you'll receive the Monero from. You can change the _Swap Provider_ by clicking on the arrow and selecting a different _Swap Provider_ from the list.
 
@@ -21,13 +24,13 @@ You can use the text field to calculate the approximate amount of Monero you'll 
 
 <img src="/first_swap_1.png" />
 
-## 2. Start the Swap
+### Start the Swap
 
 Once you've selected a _Swap Provider_, you can start the swap by clicking the `Swap` button. This will open a new window where you need to enter the receiving Monero address and the Bitcoin address refunds will be sent to if the swap is not completed successfully.
 
 <img src="/first_swap_2.png" />
 
-## 3. Depositing Bitcoin
+### Depositing Bitcoin
 
 After pressing the <img src="/start_swap_button.png" style={{
     height: "1lh",
@@ -47,7 +50,7 @@ All funds sent to this address will be used for the swap as long as they below t
 
 <img src="/first_swap_3.png" />
 
-## 4. Waiting for the swap to complete
+### Waiting for the swap to complete
 
 After sending the Bitcoin, you'll need to wait a moment for the Bitcoin to be locked.
 After the lock transaction has been confirmed, the other party will lock the Monero funds.
@@ -74,3 +77,5 @@ The swap will go through four stages:
        </td>
      </tr>
    </table>
+
+</Steps>
