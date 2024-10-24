@@ -44,7 +44,7 @@ export default function SwapProviderTable() {
               <td>{provider.peerId}</td>
               <td>{satsToBtc(provider.minSwapAmount)} BTC</td>
               <td>{satsToBtc(provider.maxSwapAmount)} BTC</td>
-              <td>{satsToBtc(provider.price)} XMR/BTC</td>
+              <td>{satsToBtc(provider.price)} BTC/XMR</td>
               <td>{(provider.uptime * 100).toFixed(1)}%</td>
             </tr>
           ))}
